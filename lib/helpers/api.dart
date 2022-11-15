@@ -8,8 +8,9 @@ class Api{
   Future<dynamic> post(String url, dynamic data) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri=Uri.parse(url);
     try {
-      final response = await http.post(url, body: data, headers: {
+      final response = await http.post(uri, body: data, headers: {
         HttpHeaders.authorizationHeader: "Bearer $token"
       });
       responseJson = _returnResponse(response);
@@ -22,8 +23,9 @@ class Api{
   Future<dynamic> get(String url) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri=Uri.parse(url);
     try {
-      final response = await http.get(url, headers: {
+      final response = await http.get(uri, headers: {
         HttpHeaders.authorizationHeader: "Bearer $token"
       });
       responseJson = _returnResponse(response);
@@ -36,8 +38,9 @@ class Api{
   Future<dynamic> delete(String url) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri=Uri.parse(url);
     try {
-      final response = await http.delete(url, headers: {
+      final response = await http.delete(uri, headers: {
         HttpHeaders.authorizationHeader: "Bearer $token"
       });
       responseJson = _returnResponse(response);

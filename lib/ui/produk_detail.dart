@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tokokita/model/produk.dart';
+import 'package:tokokita/ui/produk_page.dart';
 import 'package:tokokita/ui/produk_form.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   Produk produk;
@@ -58,6 +61,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
   }
 
   void confirmHapus() {
+    // ignore: unnecessary_new
     AlertDialog alertDialog = new AlertDialog(
       content: Text ("Yakin ingin menghapus data ini?"),
       actions: [
@@ -65,8 +69,19 @@ class _ProdukDetailState extends State<ProdukDetail> {
         RaisedButton(
           child: Text("Ya"),
           color: Colors.green,
-          onPressed: (){},
-        ),
+          onPressed: (){
+            ProdukBloc.deleteProduk(id: widget.produk.id).then((value){
+              Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=> ProdukPage()));
+            },onError: (error){
+                showDialog(
+                  context: context,
+                  builder: ((context) => WarningDialog(
+                    description: "Hapus data gagal, silahkan coba lagi",
+                  )
+              ));
+            });
+          },
+      ),
         //tombol batal
         RaisedButton(
           child: Text("Batal"),
@@ -75,6 +90,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
         )
       ],
     );
+    
 
     showDialog(context: context, builder: (BuildContext context) => alertDialog);
   }

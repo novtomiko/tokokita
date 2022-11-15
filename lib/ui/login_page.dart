@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/helpers/user_info.dart';
+import 'package:tokokita/model/login.dart';
+import 'package:tokokita/ui/produk_page.dart';
 import 'package:tokokita/ui/registrasi_page.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
+
+import '../bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                   _passwordTextField(),
                   _buttonLogin(),
                   SizedBox(height: 30,),
-                  _menuRegistrasi()
+                  _menuRegistrasi(),
                 ],
               ),
             ),
@@ -72,13 +78,44 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  //Membuat Tombol Login
+  ///Membuat Tombol Login
   Widget _buttonLogin() {
-    return RaisedButton(
-      child: Text("Login"),
-      onPressed: (){
-        var validate = _formKey.currentState.validate();
-      });
+    return ElevatedButton(
+        child: Text("Login"),
+        onPressed: () {
+          var validate = _formKey.currentState.validate();
+          if (validate) {
+            if (!_isLoading) _submit();
+          }
+        });
+  }
+
+  void _submit() {
+    _formKey.currentState.save();
+    setState(() {
+      _isLoading = true;
+    });
+    LoginBloc.login(
+            email: _emailTextboxController.text,
+            password: _passwordTextboxController.text)
+        .then((value) async {
+      await UserInfo().setToken(value.token);
+      await UserInfo().setUserID(value.userID);
+      Navigator.pushReplacement(
+          context, new MaterialPageRoute(builder: (context) => ProdukPage()));
+    }, onError: (error) {
+      print(error);
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => WarningDialog(
+                description: "Login gagal, silhakan coba lagi",
+                okClick: () {},
+              ));
+    });
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   //Membuat menu untuk membuka halaman registrasi
@@ -95,3 +132,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+
+
+  //Membuat menu untuk membuka halaman registrasi
+ // Widget _menuRegistrasi() {
+    //return Container(
+      //child: Center(
+        //child: InkWell(
+          //child: Text("Registrasi",style: TextStyle(color: Colors.blue),),
+          //onTap: () {
+           // Navigator.push(context, new MaterialPageRoute(builder: (context)=> RegistrasiPage()));
+          //},
+       // ),
+     // ),
+    //);
+ // }
