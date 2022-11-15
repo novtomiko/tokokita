@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tokokita/helpers/user_info.dart';
 import 'package:tokokita/model/login.dart';
-import 'package:tokokita/ui/produk_page.dart';
+import 'package:tokokita/ui/buku_page.dart';
 import 'package:tokokita/ui/registrasi_page.dart';
 import 'package:tokokita/widget/warning_dialog.dart';
 
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
       await UserInfo().setToken(value.token);
       await UserInfo().setUserID(value.userID);
       Navigator.pushReplacement(
-          context, new MaterialPageRoute(builder: (context) => ProdukPage()));
+          context, new MaterialPageRoute(builder: (context) => BukuPage()));
     }, onError: (error) {
       print(error);
       showDialog(

@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/model/produk.dart';
-import 'package:tokokita/ui/produk_page.dart';
-import 'package:tokokita/ui/produk_form.dart';
-import 'package:tokokita/bloc/produk_bloc.dart';
+import 'package:tokokita/model/buku.dart';
+import 'package:tokokita/ui/buku_page.dart';
+import 'package:tokokita/ui/buku_form.dart';
+import 'package:tokokita/bloc/buku_bloc.dart';
 import 'package:tokokita/widget/warning_dialog.dart';
 
-class ProdukDetail extends StatefulWidget {
-  Produk produk;
-  ProdukDetail({this.produk});
+class BukuDetail extends StatefulWidget {
+  Buku buku;
+  BukuDetail({this.buku});
   @override
-  _ProdukDetailState createState() => _ProdukDetailState();
+  _BukuDetailState createState() => _BukuDetailState();
 }
 
-class _ProdukDetailState extends State<ProdukDetail> {
+class _BukuDetailState extends State<BukuDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Produk'),
+        title: Text('Detail Buku'),
       ),
       body: Center(
         child: Column(
           children: [
             Text(
-              "Kode : ${widget.produk.kodeProduk}",
+              "Kode : ${widget.buku.kodeBuku}",
               style: TextStyle(fontSize: 20.0),
             ),
             Text(
-              "Nama : ${widget.produk.namaProduk}",
+              "Nama : ${widget.buku.judulBuku}",
               style: TextStyle(fontSize: 18.0),
             ),
             Text(
-              "Harga : Rp. ${widget.produk.hargaProduk.toString()}",
+              "Harga : Rp. ${widget.buku.penulisBuku}",
               style: TextStyle(fontSize: 18.0),
             ),
             _tombolHapusEdit()
@@ -51,7 +51,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
           Navigator.push(
               context,
               new MaterialPageRoute(
-                  builder: (context) => ProdukForm(produk: widget.produk,)));
+                  builder: (context) => BukuForm(buku: widget.buku,)));
             }),
             //Tombol Hapus
             RaisedButton(
@@ -70,8 +70,8 @@ class _ProdukDetailState extends State<ProdukDetail> {
           child: Text("Ya"),
           color: Colors.green,
           onPressed: (){
-            ProdukBloc.deleteProduk(id: widget.produk.id).then((value){
-              Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=> ProdukPage()));
+            BukuBloc.deleteBuku(id: widget.buku.id).then((value){
+              Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context)=> BukuPage()));
             },onError: (error){
                 showDialog(
                   context: context,

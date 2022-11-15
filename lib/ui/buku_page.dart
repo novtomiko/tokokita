@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tokokita/bloc/logout_bloc.dart';
-import 'package:tokokita/bloc/produk_bloc.dart';
-import 'package:tokokita/model/produk.dart';
+import 'package:tokokita/bloc/buku_bloc.dart';
+import 'package:tokokita/model/buku.dart';
 import 'package:tokokita/ui/login_page.dart';
-import 'package:tokokita/ui/produk_detail.dart';
-import 'package:tokokita/ui/produk_form.dart';
+import 'package:tokokita/ui/buku_detail.dart';
+import 'package:tokokita/ui/buku_form.dart';
 
-class ProdukPage extends StatefulWidget {
+class BukuPage extends StatefulWidget {
   @override
-  _ProdukPageState createState() => _ProdukPageState();
+  _BukuPageState createState() => _BukuPageState();
 }
 
-class _ProdukPageState extends State<ProdukPage> {
+class _BukuPageState extends State<BukuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Produk'),
+        title: Text('List Buku'),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -27,7 +27,7 @@ class _ProdukPageState extends State<ProdukPage> {
                 Navigator.push(
                   context,
                   new MaterialPageRoute(
-                    builder: (context) => ProdukForm()));
+                    builder: (context) => BukuForm()));
               },
             ))
         ],
@@ -48,34 +48,34 @@ class _ProdukPageState extends State<ProdukPage> {
         ),
       ),
       body: FutureBuilder<List>(
-              future: ProdukBloc.getProduks(),
+              future: BukuBloc.getBukus(),
               builder: (context, snapshot){
                 if(snapshot.hasError) print(snapshot.error);
-                return snapshot.hasData ? ListProduk(list: snapshot.data,) : Center(child: CircularProgressIndicator(),);
+                return snapshot.hasData ? ListBuku(list: snapshot.data,) : Center(child: CircularProgressIndicator(),);
               },
       )
     );
   }
 }
 
-class ListProduk extends StatelessWidget {
+class ListBuku extends StatelessWidget {
   final List list;
-  ListProduk({this.list});
+  ListBuku({this.list});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: list==null ? 0:list.length,
       itemBuilder: (context, i) {
-        return ItemProduk(produk: list[i]);
+        return ItemBuku(buku: list[i]);
       });
   }
 }
 
-class ItemProduk extends StatelessWidget {
-  final Produk produk;
+class ItemBuku extends StatelessWidget {
+  final Buku buku;
 
-  ItemProduk({this.produk});
+  ItemBuku({this.buku});
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +85,12 @@ class ItemProduk extends StatelessWidget {
           Navigator.push(
               context,
               new MaterialPageRoute(
-                  builder: (context) => ProdukDetail(produk: produk,)));
+                  builder: (context) => BukuDetail(buku: buku,)));
         },
         child: Card(
           child: ListTile(
-            title: Text(produk.namaProduk),
-            subtitle: Text(produk.hargaProduk.toString()),
+            title: Text(buku.judulBuku),
+            subtitle: Text(buku.penulisBuku),
           ),
         ),
       ),

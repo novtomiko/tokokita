@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/helpers/user_info.dart';
-import 'package:tokokita/ui/login_page.dart';
-import 'package:tokokita/ui/produk_page.dart';
+import 'package:perpustakaansekolah/helpers/user_info.dart';
+import 'package:perpustakaansekolah/ui/login_page.dart';
+import 'package:perpustakaansekolah/ui/buku_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     var token = await UserInfo().getToken();
     if (token != null) {
       setState(() {
-        page = ProdukPage();
+        page = BukuPage();
       });
     } else {
       setState(() {
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Toko Kita',
+      title: 'Perpustakaan Sekolah',
       debugShowCheckedModeBanner: false,
       home: page,
     );

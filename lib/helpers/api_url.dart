@@ -3,18 +3,18 @@ class ApiUrl {
 
   static const String registrasi = baseUrl + '/registrasi';
   static const String login = baseUrl + '/login';
-  static const String listProduk = baseUrl + '/produk';
-  static const String createProduk = baseUrl + '/produk';
+  static const String listBuku = baseUrl + '/buku';
+  static const String createBuku = baseUrl + '/buku';
 
-  static String updateProduk(int id) {
-    return baseUrl + '/produk/' + id.toString() + '/update';
+  static String updateBuku(int id) {
+    return baseUrl + '/buku/' + id.toString() + '/update';
   }
 
-  static String showProduk(int id) {
-    return baseUrl + '/produk/' + id.toString();
+  static String showBuku(int id) {
+    return baseUrl + '/buku/' + id.toString();
   }
 
-  static String deleteProduk(int id) {
-    return baseUrl + '/produk/' + id.toString();
+  static String deleteBuku(int id) {
+    return baseUrl + '/buku/' + id.toString();
   }
 }
