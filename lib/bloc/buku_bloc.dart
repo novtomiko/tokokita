@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:tokokita/helpers/api.dart';
-import 'package:tokokita/helpers/api_url.dart';
-import 'package:tokokita/model/buku.dart';
+import 'package:perpustakaansekolah/helpers/api.dart';
+import 'package:perpustakaansekolah/helpers/api_url.dart';
+import 'package:perpustakaansekolah/model/buku.dart';
 
 class BukuBloc{
   static Future<List<Buku>> getBukus() async {

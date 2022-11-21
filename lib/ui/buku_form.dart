@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/model/buku.dart';
-import 'package:tokokita/bloc/buku_bloc.dart';
-import 'package:tokokita/ui/buku_page.dart';
-import 'package:tokokita/widget/warning_dialog.dart';
+import 'package:perpustakaansekolah/model/buku.dart';
+import 'package:perpustakaansekolah/bloc/buku_bloc.dart';
+import 'package:perpustakaansekolah/ui/buku_page.dart';
+import 'package:perpustakaansekolah/widget/warning_dialog.dart';
 
 class BukuForm extends StatefulWidget {
   Buku buku;

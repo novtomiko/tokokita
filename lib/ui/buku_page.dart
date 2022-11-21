@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tokokita/bloc/logout_bloc.dart';
-import 'package:tokokita/bloc/buku_bloc.dart';
-import 'package:tokokita/model/buku.dart';
-import 'package:tokokita/ui/login_page.dart';
-import 'package:tokokita/ui/buku_detail.dart';
-import 'package:tokokita/ui/buku_form.dart';
+import 'package:perpustakaansekolah/bloc/logout_bloc.dart';
+import 'package:perpustakaansekolah/bloc/buku_bloc.dart';
+import 'package:perpustakaansekolah/model/buku.dart';
+import 'package:perpustakaansekolah/ui/login_page.dart';
+import 'package:perpustakaansekolah/ui/buku_detail.dart';
+import 'package:perpustakaansekolah/ui/buku_form.dart';
 
 class BukuPage extends StatefulWidget {
   @override

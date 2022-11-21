@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/bloc/registrasi_bloc.dart';
-import 'package:tokokita/widget/success_dialog.dart';
-import 'package:tokokita/widget/warning_dialog.dart';
+import 'package:perpustakaansekolah/bloc/registrasi_bloc.dart';
+import 'package:perpustakaansekolah/widget/success_dialog.dart';
+import 'package:perpustakaansekolah/widget/warning_dialog.dart';
 
 class RegistrasiPage extends StatefulWidget {
   @override

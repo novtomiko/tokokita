@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/helpers/user_info.dart';
-import 'package:tokokita/model/login.dart';
-import 'package:tokokita/ui/buku_page.dart';
-import 'package:tokokita/ui/registrasi_page.dart';
-import 'package:tokokita/widget/warning_dialog.dart';
+import 'package:perpustakaansekolah/helpers/user_info.dart';
+import 'package:perpustakaansekolah/model/login.dart';
+import 'package:perpustakaansekolah/ui/buku_page.dart';
+import 'package:perpustakaansekolah/ui/registrasi_page.dart';
+import 'package:perpustakaansekolah/widget/warning_dialog.dart';
 
 import '../bloc/login_bloc.dart';
 
